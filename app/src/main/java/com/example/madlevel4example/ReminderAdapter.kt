@@ -13,10 +13,7 @@ class ReminderAdapter(private val reminders: List<Reminder>):
 {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-//        val binding = ItemReminderBinding.bind(itemView)
-
         fun databind(reminder: Reminder) {
-//            binding.tvReminder.text = reminder.reminderText
             itemView.tvReminder.text = reminder.reminderText
         }
     }

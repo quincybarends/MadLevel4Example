@@ -64,10 +64,6 @@ class RemindersFragment : Fragment() {
             bundle.getString(BUNDLE_REMINDER_KEY)?.let {
                 val reminder = Reminder(it)
 
-//                reminders.add(reminder)
-//                reminderAdapter.notifyDataSetChanged()
-//                reminderRepository.insertReminder(reminder)
-//                getRemindersFromDatabase()
                 CoroutineScope(Dispatchers.Main).launch {
                     withContext(Dispatchers.IO) {
                         reminderRepository.insertReminder(reminder)
@@ -103,11 +99,7 @@ class RemindersFragment : Fragment() {
             // Callback triggered when a user swiped an item.
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
-//                reminders.removeAt(position)
-//                reminderAdapter.notifyDataSetChanged()
                 val reminderToDelete = reminders[position]
-//                reminderRepository.deleteReminder(reminderToDelete)
-//                getRemindersFromDatabase()
                 CoroutineScope(Dispatchers.Main).launch {
                     withContext(Dispatchers.IO) {
                         reminderRepository.deleteReminder(reminderToDelete)
@@ -121,10 +113,6 @@ class RemindersFragment : Fragment() {
     }
 
     private fun getRemindersFromDatabase() {
-//        val reminders = reminderRepository.getAllReminders()
-//        this@RemindersFragment.reminders.clear()
-//        this@RemindersFragment.reminders.addAll(reminders)
-//        reminderAdapter.notifyDataSetChanged()
         CoroutineScope(Dispatchers.Main).launch {
             val reminders = withContext(Dispatchers.IO) {
                 reminderRepository.getAllReminders()
